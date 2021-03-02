@@ -25,6 +25,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
 		sh 'helm upgrade flaskapp helm/ --install --atomic --wait --set deployment.tag=$GIT_COMMIT'
+		slackSend (color: '#FFFF00', message: "Deploy step STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
     }
