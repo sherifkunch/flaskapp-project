@@ -10,6 +10,7 @@ pipeline {
                 echo 'Building..'
 		sh 'docker build -t "myecr:$GIT_COMMIT" .'					
 		echo "BUILD WAS SUCCESSFUL"
+		slackSend (color: '#FFFF00', message: "Build step STARTED:")
 		}
         }
         stage('Push') {
