@@ -4,9 +4,13 @@ services: #ensure a copy of docker for travis actions
   - docker
 
 before_install: # some setup that needs to occur before we deploy our project
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t docker-flask . 
+  - docker images
+  - docker tag docker-flask $DOCKER_USERNAME/docker-flask
+  - docker push $DOCKER_USERNAME/docker-flask
   - echo "BUILD WAS SUCCESSFUL"
 
 script:  # contain all the needed commands that actually run our test suite 
-  - docker tag docker-flask sherifkunch/my-first-repo:latest
-
+     # - docker tag docker-flask sherifkunch/my-first-repo:latest
+  - helm upgrade flaskapp helm/ --install 
