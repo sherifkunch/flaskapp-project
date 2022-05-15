@@ -13,7 +13,8 @@ before_install: # some setup that needs to occur before we deploy our project
 
 script:  # contain all the needed commands that actually run our test suite 
      # - docker tag docker-flask sherifkunch/my-first-repo:latest
-  - docker run -p 5000:5000 -e CI=true docker-flask 
+  - docker run -d $DOCKER_USERNAME/docker-flask
+  - docker ps | grep "$DOCKER_USERNAME/docker-flask"
 
 #deploy:
 #  provider: elasticbeanstalk
