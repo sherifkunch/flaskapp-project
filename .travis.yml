@@ -13,4 +13,4 @@ before_install: # some setup that needs to occur before we deploy our project
 
 script:  # contain all the needed commands that actually run our test suite 
      # - docker tag docker-flask sherifkunch/my-first-repo:latest
-  - helm upgrade flaskapp helm/ --install 
+  - docker run -p 5000:5000 $DOCKER_USERNAME/docker-flask 
