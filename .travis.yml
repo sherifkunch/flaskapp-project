@@ -8,6 +8,5 @@ before_install: # some setup that needs to occur before we deploy our project
   - echo "BUILD WAS SUCCESSFUL"
 
 script:  # contain all the needed commands that actually run our test suite 
-  - docker tag docker-flask sherifkunch/my-first-repo:$GIT_COMMIT
+  - docker tag docker-flask sherifkunch/my-first-repo:latest
 
-  
