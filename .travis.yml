@@ -1,0 +1,13 @@
+sudo: required 
+language: generic 
+services: #ensure a copy of docker for travis actions 
+  - docker
+
+before_install: # some setup that needs to occur before we deploy our project
+  - docker build -t docker-flask . 
+  - echo "BUILD WAS SUCCESSFUL"
+
+script:  # contain all the needed commands that actually run our test suite 
+  - docker tag docker-flask sherifkunch/my-first-repo:$GIT_COMMIT
+
+  
