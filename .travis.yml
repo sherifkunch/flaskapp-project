@@ -9,7 +9,7 @@ before_install: # some setup that needs to occur before we deploy our project
   - docker images
   - docker tag docker-flask $DOCKER_USERNAME/docker-flask
   - docker push $DOCKER_USERNAME/docker-flask
-  - echo "BUILD WAS SUCCESSFUL"
+
 
 script:  # contain all the needed commands that actually run our test suite 
      # - docker tag docker-flask sherifkunch/my-first-repo:latest
