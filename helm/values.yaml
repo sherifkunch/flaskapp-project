@@ -1,6 +1,7 @@
 deployment:
         name: webapp
-        image: sherifkunch/my-first-repo:flask-app-image
+        #image: sherifkunch/my-first-repo:flask-app-image
+        image: 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:latest
         tag: latest
         replicas: 1
         containerPort: 5000
