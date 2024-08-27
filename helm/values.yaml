@@ -5,6 +5,7 @@ deployment:
         tag: latest
         replicas: 1
         containerPort: 5000
+        imagePullSecrets: ecr-secret
 service:
         name: flaskapp-lb-svc
         port: 5000
