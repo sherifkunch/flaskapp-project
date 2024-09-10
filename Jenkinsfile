@@ -31,6 +31,7 @@ pipeline {
         stage('Smoke Tests'){
             steps{
                 echo "Running simple test"
+                sleep 5
                 sh 'curl -I http://127.0.0.1:5000/health'
             }
         }
