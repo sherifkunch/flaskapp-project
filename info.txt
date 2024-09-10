@@ -9,7 +9,7 @@ Steps:
 
 Link: https://medium.com/@sangeetv09/how-to-configure-webhook-in-github-and-jenkins-for-automatic-trigger-with-cicd-pipeline-34133e9de0ea
 
-Creating a webhook in GitHub and Configuration
+Continue with creating a webhook in GitHub and Configuration
 
 The next step is to create a webhook on GitHub. 
 A webhook is a URL that GitHub uses when a new commit is pushed to the repository. 
