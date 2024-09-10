@@ -1,0 +1,26 @@
+Using Jenkinsfile
+
+Steps:
+1. Start the VM so the Jenkins software can load and start normally
+2. Set up Jenkins pipeline to trigger on push 
+3. Go to jenkins and create pipeline 
+4. From the options on the pipeline choose GitHub hook trigger for GITScm polling
+5. Under the Pipeline option, select Pipeline script from SCM, and in the SCM option, select Git and specify the Git repository URL.
+
+Link: https://medium.com/@sangeetv09/how-to-configure-webhook-in-github-and-jenkins-for-automatic-trigger-with-cicd-pipeline-34133e9de0ea
+
+Creating a webhook in GitHub and Configuration
+
+The next step is to create a webhook on GitHub. 
+A webhook is a URL that GitHub uses when a new commit is pushed to the repository. 
+This URL will initiate a build in Jenkins.
+
+Jenkins can set up configurations either manually or automatically. 
+Let’s look at how to manually set up configurations. 
+To create a webhook manually, go to your GitHub repository, click Settings, and then Webhooks. 
+Click on Add webhook and enter the Jenkins URL. The Jenkins URL should have the following format:
+
+http://<jenkins_server>/github-webhook/
+
+After you’ve configured the webhook, click Add webhook to save. 
+Using the automatic mode, Jenkins will add/remove hook URLs from GitHub based on the project configuration in the background.
