@@ -24,7 +24,7 @@ pipeline {
             steps{
                 echo "Deploying locally..."
                 sh 'docker pull 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
-                sh 'docker rm  view-me'
+                sh 'docker rm --force view-me'
                 sh 'docker run -dit --name view-me -p 5000:5000 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
             }
         }
