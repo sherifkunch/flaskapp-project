@@ -19,6 +19,16 @@ pipeline {
 		        sh 'docker tag dev/test:$GIT_COMMIT 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
 		        sh 'docker push 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
             }
+        stage('Deploy'){
+            echo "Deploying locally..."
+            sh 'docker pull 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
+            sh 'docker rm  view-me'
+            sh 'docker run -dit --name view-me -p 5000:5000 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:$GIT_COMMIT'
+        }
+        stage('Smoke Tests'){
+            echo "Running simple test"
+            sh 'curl -I http://127.0.0.1:5000/health'
+        }
         }
     }
 }

@@ -8,6 +8,10 @@ app = Flask(__name__)
 
 env = os.getenv('ENV', 'Development')
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return {'status': 'healthy'}, 200
+
 @app.route("/hello")
 def hello():
     return f"Hello, World! \n This is {env} environment!"
