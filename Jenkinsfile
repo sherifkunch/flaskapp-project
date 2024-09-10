@@ -32,7 +32,16 @@ pipeline {
             steps{
                 echo "Running simple test"
                 sleep 5
-                sh 'curl -I http://127.0.0.1:5000/health'
+                // Use curl to check health and fail the build if the status is not 200
+                sh '''
+                    status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5000/health)
+                    if [ "$status_code" -ne 200 ]; then
+                        echo "Health check failed with status code: $status_code"
+                        exit 1
+                    else
+                        echo "Health check passed with status code: $status_code"
+                    fi
+                '''
             }
         }
     }
