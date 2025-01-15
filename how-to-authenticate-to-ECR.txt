@@ -1,0 +1,17 @@
+How to authenticate to ECR?
+
+1. When you go to ECR there is a button push commands which is showing you the steps when you want to push new image to the ECR. 
+There is the following step: 
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 392209090241.dkr.ecr.eu-central-1.amazonaws.com
+
+2. Get the docker credentials
+ aws ecr get-login-password --region eu-central-1 | base64 -w 0
+
+3. Create Kubernetes secret
+
+kubectl create secret docker-registry ecr-secret \
+    --docker-server=392209090241.dkr.ecr.eu-central-1.amazonaws.com \
+    --docker-username=AWS \
+    --docker-password=$(aws ecr get-login-password --region eu-central-1) \
+    --namespace default
+

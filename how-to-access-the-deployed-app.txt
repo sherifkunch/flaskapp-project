@@ -1,0 +1,2 @@
+kubectl expose pod test-deployment-db66cd95-kpw92 --type=NodePort --port=5000 --target-port=5000 -n default
+http://localhost:30501
