@@ -26,5 +26,5 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: |
         IMAGE_TAG=${{ github.sha }}
-        IMAGE_NAME=ysherifkunch/jan16repositorydevopsdemonstrations
+        IMAGE_NAME=sherifkunch/jan16repositorydevopsdemonstrations
         docker push $IMAGE_NAME:$IMAGE_TAG
