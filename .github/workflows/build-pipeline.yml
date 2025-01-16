@@ -29,6 +29,11 @@ jobs:
     #   with:
     #     dockerfile: Dockerfile
 
+    # - name: Analyze code with CodeQL
+    #   uses: github/codeql-action/analyze@v2
+    #   with:
+    #     category: security
+
     # Step 3: Log in to Amazon ECR
     - name: Log in to Amazon ECR
       id: login-ecr
@@ -41,10 +46,17 @@ jobs:
         IMAGE_URI=392209090241.dkr.ecr.eu-central-1.amazonaws.com/demo-2025:${IMAGE_TAG}
         docker build -t $IMAGE_URI .
 
-     - name: Scan Docker image for vulnerabilities
+    - name: Scan Docker image for vulnerabilities
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: 392209090241.dkr.ecr.eu-central-1.amazonaws.com/demo-2025:${IMAGE_TAG}
+
+    - name: Run Unit Tests
+      run: |
+          # Adjust this to your project's testing setup
+          npm install
+          npm test
+
     # Step 5: Push the Docker image to Amazon ECR
     - name: Push Docker image to Amazon ECR
       run: |
@@ -52,3 +64,10 @@ jobs:
         IMAGE_URI=392209090241.dkr.ecr.eu-central-1.amazonaws.com/demo-2025:${IMAGE_TAG}
         docker push $IMAGE_URI
     
+    # - name: Notify via Slack
+    #   if: always() # or success() / failure()
+    #   uses: slackapi/slack-github-action@v1.23.0
+    #   with:
+    #     slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    #   payload: '{"text": "Pipeline ${{ github.workflow }} completed with status ${{ job.status }}."}'
+
