@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: test-container
-        image: 392209090241.dkr.ecr.eu-central-1.amazonaws.com/dev/test:latest
+        image: 392209090241.dkr.ecr.eu-central-1.amazonaws.com/:latest
         ports:
         - containerPort: 5000
       imagePullSecrets:
