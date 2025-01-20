@@ -49,7 +49,7 @@ jobs:
 
     - name: Update kube config
       run: |
-        aws eks update-kubeconfig --name demo-cluster-three-tier-1 --region us-east-1
+        aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
         cat ~/.kube/config
       
     - name: Verify kubeconfig setup
