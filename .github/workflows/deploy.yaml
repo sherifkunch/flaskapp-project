@@ -57,6 +57,9 @@ jobs:
         aws sts get-caller-identity
         kubectl config view
         kubectl config current-context
+        
+    - name: run aws get token 
+      run: aws eks get-token
 
     - name: Run a simple kubectl command to validate 
       run: |
