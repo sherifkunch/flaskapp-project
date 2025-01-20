@@ -63,7 +63,7 @@ jobs:
 
     - name: Run a simple kubectl command to validate 
       run: |
-        kubectl get nodes
+        kubectl get nodes --v=8
         kubectl get pod -A
 
     - name: Deploy to EKS
