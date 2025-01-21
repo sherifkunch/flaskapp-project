@@ -12,9 +12,9 @@ env:
   EKS_CLUSTER_NAME: demo-cluster-three-tier-1 
   AWS_REGION: eu-central-1 #us-east-1
 
-permissions:
-    id-token: write   # This is required for requesting the JWT
-    contents: read    # This is required for actions/checkout
+# permissions:
+#     id-token: write   # This is required for requesting the JWT
+#     contents: read    # This is required for actions/checkout
 
 jobs:
   
@@ -46,9 +46,9 @@ jobs:
     #     role-session-name: GitHub_to_AWS_via_FederatedOIDC
     #     aws-region: eu-central-1
     
-    - name: Sts GetCallerIdentity
-      run: |
-        aws sts get-caller-identity
+    # - name: Sts GetCallerIdentity
+    #   run: |
+    #     aws sts get-caller-identity
     
     # - name: Approve sts
     #   run: eksctl utils associate-iam-oidc-provider --cluster $EKS_CLUSTER_NAME --approve
@@ -69,17 +69,17 @@ jobs:
       run: |
         aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
         
-    - name: Verify kubeconfig setup
-      run: |
-        aws sts get-caller-identity
-        kubectl config view
-        kubectl config current-context
+    # - name: Verify kubeconfig setup
+    #   run: |
+    #     aws sts get-caller-identity
+    #     kubectl config view
+    #     kubectl config current-context
 
-    - name: run aws get token 
-      run: aws eks get-token --cluster-name $EKS_CLUSTER_NAME --region $AWS_REGION
+    # - name: run aws get token 
+    #   run: aws eks get-token --cluster-name $EKS_CLUSTER_NAME --region $AWS_REGION
 
-    - name: run can I 
-      run: kubectl auth can-i --list
+    # - name: run can I 
+    #   run: kubectl auth can-i --list
 
     - name: Run a simple kubectl command to validate 
       run: |
