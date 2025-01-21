@@ -10,7 +10,7 @@ on:
 env:
   ECR_REPOSITORY: flask-app
   EKS_CLUSTER_NAME: demo-cluster-three-tier-1 
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-central-1 #us-east-1
 
 permissions:
     id-token: write   # This is required for requesting the JWT
@@ -44,14 +44,14 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::392209090241:role/administratoraccessrolegithubactions #change to reflect your IAM role’s ARN
         role-session-name: GitHub_to_AWS_via_FederatedOIDC
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: eu-central-1
     
-    - name: Sts GetCallerIdentity
-      run: |
-        aws sts get-caller-identity
+    # - name: Sts GetCallerIdentity
+    #   run: |
+    #     aws sts get-caller-identity
     
-    - name: Approve sts
-      run: eksctl utils associate-iam-oidc-provider --cluster $EKS_CLUSTER_NAME --approve
+    # - name: Approve sts
+    #   run: eksctl utils associate-iam-oidc-provider --cluster $EKS_CLUSTER_NAME --approve
 
     - name: Login to Amazon ECR
       id: login-ecr
