@@ -49,6 +49,9 @@ jobs:
     - name: Sts GetCallerIdentity
       run: |
         aws sts get-caller-identity
+    
+    - name: Approve sts
+      run: eksctl utils associate-iam-oidc-provider --cluster $EKS_CLUSTER_NAME --approve
 
     - name: Login to Amazon ECR
       id: login-ecr
